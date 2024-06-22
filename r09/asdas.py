@@ -46,12 +46,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-X = np.arange(5)
-# dane = pd.read_csv('kurs09.csv', sep=';')
-# dane = dane.replace(',','.', regex=True).astype(float)
-X = np.array([1,2,3])
-# parzyste = dane[dane['Dzień'] % 2 == 0]['Dzień']
-# kurs_czk_parzyste = dane[dane['Dzień'] % 2 == 0]['Kurs CZK']
-print(X)
-# plt.plot(parzyste, kurs_czk_parzyste)
-# plt.show()
+
+dane = pd.read_csv('kurs09.csv', sep=';')
+dane = dane.replace(',','.', regex=True).astype(float)
+parzyste = dane[dane['Dzień'] % 2 == 0]['Dzień']
+kurs_czk_parzyste = dane[dane['Dzień'] % 2 == 0]['Kurs CZK']
+plt.plot(parzyste, kurs_czk_parzyste)
+plt.show()
