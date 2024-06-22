@@ -41,23 +41,16 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-dane = pd.read_csv('wynagrodzenia06.csv',sep=';', header=None)
-headers = dane[0]
-dane = dane.T
-dane = dane[1:]
-dane.columns = headers
-dane["Wartosc"] = dane["Wartosc"].str.replace(',', '.', regex=True).astype(float)
-
-slazk = dane[dane["Nazwa"] == "ŚLĄSKIE"]
-podkarpacie = dane[dane["Nazwa"] == "PODKARPACKIE"]
-
+dane = pd.read_csv('wynagrodzenia06.csv',sep=';',header=None).T
+slazk = dane[dane[0] == "ŚLĄSKIE"]
+podkarpacie = dane[dane[0] == "PODKARPACKIE"]
 
 Y = np.arange(3)
 
-plt.barh(Y - 0.125, slazk["Wartosc"].T, color='b', height=0.25, label="ŚLĄSKIE")
-plt.barh(Y + 0.125, podkarpacie["Wartosc"].T, color='g', height=0.25, label="PODKARPACKIE")
-plt.yticks(Y + 0.00, slazk["Rok"])
-plt.title('HCWD')
+plt.barh(Y - 0.125, slazk[2], color='b', height=0.25, label="ŚLĄSKIE")
+plt.barh(Y + 0.125, podkarpacie[2], color='g', height=0.25, label="PODKARPACKIE")
+plt.yticks(Y + 0.00, slazk[1])
+plt.title('Tytuł')
 plt.legend()
 plt.tight_layout()
 plt.show()
